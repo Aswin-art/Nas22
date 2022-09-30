@@ -11,6 +11,25 @@
 <body>
 
 
+    <?php 
+    
+    $date = new DateTime('m');
+    $month = '';
+    switch($date){
+        case 1:
+            $month = 'January';
+            break;
+        case 2:
+            $month = 'February';
+            break;
+        case 11:
+            $month = 'September';
+            break;
+    }
+
+    var_dump($month);
+    
+    ?>
     <div class="custom-calendar-wrap">
         <div class="custom-inner">
             <div class="custom-header clearfix">
@@ -18,7 +37,7 @@
                     <a href="#" class="custom-btn custom-prev"></a>
                     <a href="#" class="custom-btn custom-next"></a>
                 </nav>
-                <h2 id="custom-month" class="custom-month">February</h2>
+                <h2 id="custom-month" class="custom-month"><?php echo $month ?></h2>
                 <h3 id="custom-year" class="custom-year">2019</h3>
             </div>
             <div id="calendar" class="fc-calendar-container">
