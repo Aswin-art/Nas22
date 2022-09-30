@@ -10,26 +10,28 @@
 
 <body>
 
-
-    <?php 
+    <?php
     
-    $date = new DateTime('m');
-    $month = '';
-    switch($date){
-        case 1:
-            $month = 'January';
-            break;
-        case 2:
-            $month = 'February';
-            break;
-        case 11:
-            $month = 'September';
-            break;
-    }
+        $date = date('m');
+        $year = date('y');
+        $day = date('d');
+        $month = '';
+        switch($date){
+            case '08':
+                $month = 'Agustus';
+                break;
+            case '09':
+                $month = 'September';
+                break;
+            case '10':
+                $month = 'Oktober';
+                break;
+        }
 
-    var_dump($month);
+        var_dump($day);
     
     ?>
+
     <div class="custom-calendar-wrap">
         <div class="custom-inner">
             <div class="custom-header clearfix">
@@ -37,8 +39,8 @@
                     <a href="#" class="custom-btn custom-prev"></a>
                     <a href="#" class="custom-btn custom-next"></a>
                 </nav>
-                <h2 id="custom-month" class="custom-month"><?php echo $month ?></h2>
-                <h3 id="custom-year" class="custom-year">2019</h3>
+                <h2 id="custom-month" class="custom-month"><?php echo $month; ?></h2>
+                <h3 id="custom-year" class="custom-year">20<?php echo $year; ?></h3>
             </div>
             <div id="calendar" class="fc-calendar-container">
                 <div class="fc-calendar fc-five-rows">
@@ -52,15 +54,6 @@
                         <div>Sat</div>
                     </div>
                     <div class="fc-body">
-                        <div class="fc-row">
-                            <div><span class="fc-date"></span></div>
-                            <div><span class="fc-date"></span></div>
-                            <div><span class="fc-date"></span></div>
-                            <div><span class="fc-date"></span></div>
-                            <div><span class="fc-date"></span></div>
-                            <div><span class="fc-date">1</span></div>
-                            <div><span class="fc-date">2</span></div>
-                        </div>
                         <div class="fc-row">
                             <div><span class="fc-date">3</span></div>
                             <div><span class="fc-date">4</span></div>
