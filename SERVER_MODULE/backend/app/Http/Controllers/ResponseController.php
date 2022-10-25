@@ -66,6 +66,5 @@ class ResponseController extends Controller
                 'message' => 'Forbidden access'
             ], 403);
         }
-
     }
 }

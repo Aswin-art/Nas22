@@ -56,7 +56,8 @@ class FormController extends Controller
 
     public function index(Request $request)
     {
-        $forms = Form::all();
+        $user = $request->user();
+        $forms = Form::where('creator_id', $user->id)->get();
 
         return response()->json([
             'message' => 'Get all forms success',
@@ -73,6 +74,8 @@ class FormController extends Controller
         if($form){
             $user_domain = explode('@', $user->email);
             $allowed_domain = AllowedDomain::where('form_id', $form->id)->where('domain', $user_domain[1])->exists();
+            $list_domains = AllowedDomain::where('form_id', $form->id)->get();
+            $form['allowed_domains'] = $list_domains;
     
             if(!$allowed_domain){
                 return response()->json([
