@@ -1,0 +1,24 @@
+<template>
+   <main>
+      <div class="hero py-5 bg-light">
+         <div class="container text-center"> 
+            <h2 class="mb-3">
+               403 Forbidden Access
+            </h2> 
+            <div class="text-muted">
+               You don't have access this form.
+            </div>
+         </div>
+      </div> 
+    </main>
+</template>
+
+<script>
+export default {
+
+}
+</script>
+
+<style>
+
+</style>
