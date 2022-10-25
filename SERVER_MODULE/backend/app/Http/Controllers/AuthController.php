@@ -37,7 +37,7 @@ class AuthController extends Controller
         $user->tokens()->delete();
 
         return response()->json([
-            'message' => 'Email or password incorrect'
+            'message' => 'Logout success'
         ]);
     }
 }

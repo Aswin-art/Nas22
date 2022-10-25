@@ -12,38 +12,39 @@ class FormController extends Controller
     public function create(Request $request)
     {
         $user = $request->user();
+        // return $user;
         // $user = 1;
         $validate = $request->validate([
             'name' => 'required',
             'slug' => 'required|unique:forms,slug|alpha_dash',
-            // 'allowed_domains' => 'array'
-            'allowed_domains' => 'required'
+            'allowed_domains' => 'array',
+            // 'allowed_domains' => 'required'
         ]);
 
-        $validate['description'] = $request->description;
-        $validate['limit_one_response'] = $request->limit_one_response;
+        // $validate['description'] = $request->description;
+        // $validate['limit_one_response'] = $request->limit_one_response;
         // $validate['creator_id'] = $user->id;
-        $validate['creator_id'] = $user;
+        // $validate['creator_id'] = $user;
 
         $data['name'] = $request->name;
         $data['slug'] = $request->slug;
         $data['description'] = $request->description;
         $data['limit_one_response'] = $request->limit_one_response;
-        $data['creator_id'] = $user;
+        $data['creator_id'] = $user->id;
 
         $form = Form::create($data);
 
-        // foreach($validate['allowed_domains'] as $domain){
-        //     AllowedDomain::create([
-        //         'form_id' => $form->id,
-        //         'domain' => $domain
-        //     ]);
-        // }
-        
+        foreach($validate['allowed_domains'] as $domain){
             AllowedDomain::create([
                 'form_id' => $form->id,
-                'domain' => $request->allowed_domains
+                'domain' => $domain
             ]);
+        }
+        
+            // AllowedDomain::create([
+            //     'form_id' => $form->id,
+            //     'domain' => $request->allowed_domains
+            // ]);
 
 
 
@@ -68,16 +69,17 @@ class FormController extends Controller
         $user = $request->user();
         // $user = User::where('email', 'user1@webtech.id')->first();
         $form = Form::with('questions')->where('slug', $form_slug)->first();
-        $user_domain = explode('@', $user->email);
-        $allowed_domain = AllowedDomain::where('form_id', $form->id)->where('domain', $user_domain[1])->exists();
-
-        if(!$allowed_domain){
-            return response()->json([
-                'message' => 'Forbidden access'
-            ], 403);
-        }
 
         if($form){
+            $user_domain = explode('@', $user->email);
+            $allowed_domain = AllowedDomain::where('form_id', $form->id)->where('domain', $user_domain[1])->exists();
+    
+            if(!$allowed_domain){
+                return response()->json([
+                    'message' => 'Forbidden access'
+                ], 403);
+            }
+            
             return response()->json([
                 'message' => 'Get form success',
                 'form' => $form

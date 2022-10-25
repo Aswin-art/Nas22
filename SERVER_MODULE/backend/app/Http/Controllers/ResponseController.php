@@ -13,9 +13,10 @@ class ResponseController extends Controller
     public function submit(Request $request, $slug)
     {
         $user = $request->user();
+        // return $user;
         $form = Form::where('slug', $slug)->first();
         $domainName = explode('@', $user->email);
-        $allowed_domain = AllowedDomain::where('form_id', $form->id)->where('domain', $domainName)->exists();
+        $allowed_domain = AllowedDomain::where('form_id', $form->id)->where('domain', $domainName[1])->exists();
 
         if($allowed_domain){
             if($form->limit_one_response){
@@ -48,8 +49,13 @@ class ResponseController extends Controller
         $user = $request->user();
         // $user = User::where('email', 'user1@webtech.id')->first();
         $form = Form::where('slug', $slug)->first();
+        if(!$form){
+            return response()->json([
+                'message' => 'Form not found'
+            ], 404);
+        }
         $responses = Response::with(['users', 'answers'])->where('form_id', $form->id)->get();
-
+        
         if($form->creator_id == $user->id){
             return response()->json([
                 'message' => 'Get responses success',
