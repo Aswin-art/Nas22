@@ -8,21 +8,28 @@ html, body{
 
 .container{
     position: relative;
+    background-image: url('/image.webp');
+    width: 500px;
+    height: 500px;
+    background-repeat: no-repeat;
 }
 
-.slider{
+.image{
+    width: 50%;
+    height: 100%;
+    background-image: url('./image.webp');
     position: absolute;
-    /* height: 100%;
-    width: 2px; */
-    width: 100%;
-    left: 0;
-    top: 50%;
+    filter: grayscale(1);
+}
+
+.image::after{
+    content: '';
+    position: absolute;
+    /* top: 50%; */
+    left: 100%;
+    /* transform: translate(50%); */
+    height: 100%;
+    width: 2px;
     background-color: white;
-    /* left: 50%; */
-    /* transform: translate(-50%, -50%); */
     cursor: e-resize;
 }
-/* 
-img{
-    filter: grayscale(90%);
-} */
