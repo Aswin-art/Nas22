@@ -5,7 +5,11 @@ const bounding = image.getBoundingClientRect()
 function move(e){
     let x = e.pageX - bounding.left
     let y = e.pageY - bounding.top
-    image.style.width = x + 'px' 
+    if(x <= 0 || x >= 700){
+        return
+    }else{
+        image.style.width = x + 'px'
+    }
 }
 
 container.addEventListener('mousedown', () => {

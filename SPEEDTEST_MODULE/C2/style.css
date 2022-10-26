@@ -9,7 +9,7 @@ html, body{
 .container{
     position: relative;
     background-image: url('/image.webp');
-    width: 500px;
+    width: 700px;
     height: 500px;
     background-repeat: no-repeat;
 }
@@ -25,9 +25,7 @@ html, body{
 .image::after{
     content: '';
     position: absolute;
-    /* top: 50%; */
     left: 100%;
-    /* transform: translate(50%); */
     height: 100%;
     width: 2px;
     background-color: white;
