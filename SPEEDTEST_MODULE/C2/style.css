@@ -1,0 +1,28 @@
+html, body{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container{
+    position: relative;
+}
+
+.slider{
+    position: absolute;
+    /* height: 100%;
+    width: 2px; */
+    width: 100%;
+    left: 0;
+    top: 50%;
+    background-color: white;
+    /* left: 50%; */
+    /* transform: translate(-50%, -50%); */
+    cursor: e-resize;
+}
+/* 
+img{
+    filter: grayscale(90%);
+} */
