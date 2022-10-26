@@ -1,0 +1,5 @@
+<?php
+/**
+ * Template Page: Articles
+ */
+?>

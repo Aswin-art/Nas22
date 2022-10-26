@@ -1,0 +1,187 @@
+/*! jQuery UI - v1.12.0 - 2016-07-08
+* http://jqueryui.com
+* Includes: core.css, accordion.css, autocomplete.css, menu.css, button.css, controlgroup.css, checkboxradio.css, datepicker.css, dialog.css, draggable.css, resizable.css, progressbar.css, selectable.css, selectmenu.css, slider.css, sortable.css, spinner.css, tabs.css, tooltip.css, theme.css
+* To view and modify this theme, visit http://jqueryui.com/themeroller/?ffDefault=Arial%2CHelvetica%2Csans-serif&fsDefault=1em&fwDefault=normal&cornerRadius=3px&bgColorHeader=e9e9e9&bgTextureHeader=flat&borderColorHeader=dddddd&fcHeader=333333&iconColorHeader=444444&bgColorContent=ffffff&bgTextureContent=flat&borderColorContent=dddddd&fcContent=333333&iconColorContent=444444&bgColorDefault=f6f6f6&bgTextureDefault=flat&borderColorDefault=c5c5c5&fcDefault=454545&iconColorDefault=777777&bgColorHover=ededed&bgTextureHover=flat&borderColorHover=cccccc&fcHover=2b2b2b&iconColorHover=555555&bgColorActive=007fff&bgTextureActive=flat&borderColorActive=003eff&fcActive=ffffff&iconColorActive=ffffff&bgColorHighlight=fffa90&bgTextureHighlight=flat&borderColorHighlight=dad55e&fcHighlight=777620&iconColorHighlight=777620&bgColorError=fddfdf&bgTextureError=flat&borderColorError=f1a899&fcError=5f3f3f&iconColorError=cc0000&bgColorOverlay=aaaaaa&bgTextureOverlay=flat&bgImgOpacityOverlay=0&opacityOverlay=30&bgColorShadow=666666&bgTextureShadow=flat&bgImgOpacityShadow=0&opacityShadow=30&thicknessShadow=5px&offsetTopShadow=0px&offsetLeftShadow=0px&cornerRadiusShadow=8px
+* Copyright jQuery Foundation and other contributors; Licensed MIT */
+
+/* Layout helpers
+----------------------------------*/
+#add_new_slider .ui-helper-hidden {display: none}
+#add_new_slider .ui-helper-hidden-accessible {border: 0;clip: rect(0 0 0 0);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px}
+#add_new_slider .ui-helper-reset {margin: 0;padding: 0;border: 0;outline: 0;line-height: 1.3;text-decoration: none;font-size: 100%;list-style: none}
+#add_new_slider .ui-helper-clearfix:before,
+#add_new_slider .ui-helper-clearfix:after {content: "";display: table;border-collapse: collapse}
+#add_new_slider .ui-helper-clearfix:after {clear: both}
+#add_new_slider .ui-helper-zfix {width: 100%;height: 100%;top: 0;left: 0;position: absolute;opacity: 0;filter:Alpha(Opacity=0); /* support: IE8 */}
+#add_new_slider .ui-front {z-index: 100}
+
+/* Interaction Cues
+----------------------------------*/
+#add_new_slider .ui-state-disabled {cursor: default !important;pointer-events: none}
+
+/* Icons
+----------------------------------*/
+#add_new_slider .ui-icon {display: inline-block;vertical-align: middle;margin-top: -.25em;position: relative;text-indent: -99999px;overflow: hidden;background-repeat: no-repeat}
+#add_new_slider .ui-widget-icon-block {left: 50%;margin-left: -8px;display: block}
+
+/* Misc visuals
+----------------------------------*/
+/* Overlays */
+#add_new_slider .ui-widget-overlay {position: fixed;top: 0;left: 0;width: 100%;height: 100%}
+#add_new_slider .ui-accordion .ui-accordion-header {display: block;cursor: pointer;position: relative;margin: 2px 0 0 0;padding: .5em .5em .5em .7em;font-size: 100%}
+#add_new_slider .ui-accordion .ui-accordion-content {padding: 1em 2.2em;border-top: 0;overflow: auto}
+#add_new_slider .ui-autocomplete {position: absolute;top: 0;left: 0;cursor: default}
+#add_new_slider .ui-menu {list-style: none;padding: 0;margin: 0;display: block;outline: 0}
+#add_new_slider .ui-menu .ui-menu {position: absolute}
+#add_new_slider .ui-menu .ui-menu-item {margin: 0;cursor: pointer;
+/* support: IE10, see #8844 */
+list-style-image: url("data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7")}
+#add_new_slider .ui-menu .ui-menu-item-wrapper {position: relative;padding: 3px 1em 3px .4em}
+#add_new_slider .ui-menu .ui-menu-divider {margin: 5px 0;height: 0;font-size: 0;line-height: 0;border-width: 1px 0 0 0}
+#add_new_slider .ui-menu .ui-state-focus,
+#add_new_slider .ui-menu .ui-state-active {margin: -1px}
+/* icon support */
+#add_new_slider .ui-menu-icons {position: relative}
+#add_new_slider .ui-menu-icons .ui-menu-item-wrapper {padding-left: 2em}
+/* left-aligned */
+#add_new_slider .ui-menu .ui-icon {position: absolute;top: 0;bottom: 0;left: .2em;margin: auto 0}
+/* right-aligned */
+#add_new_slider .ui-menu .ui-menu-icon {left: auto;right: 0}
+#add_new_slider .ui-button {padding: .4em 1em;display: inline-block;position: relative;line-height: normal;margin-right: .1em;cursor: pointer;vertical-align: middle;text-align: center;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;
+/* Support: IE <= 11 */
+overflow: visible}
+#add_new_slider .ui-button,
+#add_new_slider .ui-button:link,
+#add_new_slider .ui-button:visited,
+#add_new_slider .ui-button:hover,
+#add_new_slider .ui-button:active {text-decoration: none}
+/* to make room for the icon, a width needs to be set here */
+#add_new_slider .ui-button-icon-only {width: 2em;box-sizing: border-box;text-indent: -9999px;white-space: nowrap}
+/* no icon support for input elements */
+#add_new_slider input.ui-button.ui-button-icon-only {text-indent: 0}
+/* button icon element(s) */
+#add_new_slider .ui-button-icon-only .ui-icon {position: absolute;top: 50%;left: 50%;margin-top: -8px;margin-left: -8px}
+#add_new_slider .ui-button.ui-icon-notext .ui-icon {padding: 0;width: 2.1em;height: 2.1em;text-indent: -9999px;white-space: nowrap}
+#add_new_slider input.ui-button.ui-icon-notext .ui-icon {width: auto;height: auto;text-indent: 0;white-space: normal;padding: .4em 1em}
+/* workarounds */
+/* Support: Firefox 5 - 40 */
+#add_new_slider input.ui-button::-moz-focus-inner,
+#add_new_slider button.ui-button::-moz-focus-inner {border: 0;padding: 0}
+#add_new_slider .ui-controlgroup {vertical-align: middle;display: inline-block}
+#add_new_slider .ui-controlgroup > .ui-controlgroup-item {float: left;margin-left: 0;margin-right: 0}
+#add_new_slider .ui-controlgroup > .ui-controlgroup-item:focus,
+#add_new_slider .ui-controlgroup > .ui-controlgroup-item.ui-visual-focus {z-index: 9999}
+#add_new_slider .ui-controlgroup-vertical > .ui-controlgroup-item {display: block;float: none;width: 100%;margin-top: 0;margin-bottom: 0;text-align: left}
+#add_new_slider .ui-controlgroup-vertical .ui-controlgroup-item {box-sizing: border-box}
+#add_new_slider .ui-controlgroup .ui-controlgroup-label {padding: .4em 1em}
+#add_new_slider .ui-controlgroup .ui-controlgroup-label span {font-size: 80%}
+#add_new_slider .ui-controlgroup-horizontal .ui-controlgroup-label + .ui-controlgroup-item {border-left: none}
+#add_new_slider .ui-controlgroup-vertical .ui-controlgroup-label + .ui-controlgroup-item {border-top: none}
+#add_new_slider .ui-controlgroup-horizontal .ui-controlgroup-label.ui-widget-content {border-right: none}
+#add_new_slider .ui-controlgroup-vertical .ui-controlgroup-label.ui-widget-content {border-bottom: none}
+/* Spinner specific style fixes */
+#add_new_slider .ui-controlgroup-vertical .ui-spinner-input {
+/* Support: IE8 only, Android < 4.4 only */
+width: 75%;width: calc( 100% - 2.4em )}
+#add_new_slider .ui-controlgroup-vertical .ui-spinner .ui-spinner-up {border-top-style: solid}
+#add_new_slider .ui-checkboxradio-label .ui-icon-background {box-shadow: inset 1px 1px 1px #ccc;border-radius: .12em;border: none}
+#add_new_slider .ui-checkboxradio-radio-label .ui-icon-background {width: 16px;height: 16px;border-radius: 1em;overflow: visible;border: none}
+#add_new_slider .ui-checkboxradio-radio-label.ui-checkboxradio-checked .ui-icon,
+#add_new_slider .ui-checkboxradio-radio-label.ui-checkboxradio-checked:hover .ui-icon {background-image: none;width: 8px;height: 8px;border-width: 4px;border-style: solid}
+#add_new_slider .ui-checkboxradio-disabled {pointer-events: none}
+
+#add_new_slider .ui-tabs {position: relative;/* position: relative prevents IE scroll bug (element with position: relative inside container with overflow: auto appear as "fixed") */padding: .2em}
+#add_new_slider .ui-tabs .ui-tabs-nav {margin: 0;padding: .2em .2em 0}
+#add_new_slider .ui-tabs .ui-tabs-nav li {list-style: none;float: left;position: relative;top: 0;margin: 1px .2em 0 0;border-bottom-width: 0;padding: 0;white-space: nowrap}
+#add_new_slider .ui-tabs .ui-tabs-nav .ui-tabs-anchor {float: left;padding: .5em 1em;text-decoration: none}
+#add_new_slider .ui-tabs .ui-tabs-nav li.ui-tabs-active {margin-bottom: -1px;padding-bottom: 1px}
+#add_new_slider .ui-tabs .ui-tabs-nav li.ui-tabs-active .ui-tabs-anchor,
+#add_new_slider .ui-tabs .ui-tabs-nav li.ui-state-disabled .ui-tabs-anchor,
+#add_new_slider .ui-tabs .ui-tabs-nav li.ui-tabs-loading .ui-tabs-anchor {cursor: text}
+#add_new_slider .ui-tabs-collapsible .ui-tabs-nav li.ui-tabs-active .ui-tabs-anchor {cursor: pointer}
+#add_new_slider .ui-tabs .ui-tabs-panel {display: block;border-width: 0;padding: 1em 1.4em;background: none}
+
+/* Component containers
+----------------------------------*/
+#add_new_slider .ui-widget {font-family: Arial,Helvetica,sans-serif;font-size: 1em}
+#add_new_slider .ui-widget .ui-widget {font-size: 1em}
+#add_new_slider .ui-widget input,
+#add_new_slider .ui-widget select,
+#add_new_slider .ui-widget textarea,
+#add_new_slider .ui-widget button {font-family: Arial,Helvetica,sans-serif;font-size: 1em}
+.ui-widget.ui-widget-content {border: 1px solid #c5c5c5}
+.ui-widget-content {border: 1px solid #dddddd;background: #ffffff;color: #333333}
+.ui-widget-content a {color: #333333}
+.ui-widget-header {border: 1px solid #dddddd;background: #e9e9e9;color: #333333;font-weight: bold}
+.ui-widget-header a {color: #333333}
+
+/* Interaction states
+----------------------------------*/
+.ui-state-default,
+.ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default,
+.ui-button,
+/* We use html here because we need a greater specificity to make sure disabled
+works properly when clicked or hovered */
+html .ui-button.ui-state-disabled:hover,
+html .ui-button.ui-state-disabled:active {border: 1px solid #c5c5c5;background: #f6f6f6;font-weight: normal;color: #454545}
+.ui-state-default a,
+.ui-state-default a:link,
+.ui-state-default a:visited,
+a.ui-button,
+a:link.ui-button,
+a:visited.ui-button,
+.ui-button {color: #454545;text-decoration: none}
+.ui-state-hover,
+.ui-widget-content .ui-state-hover,
+.ui-widget-header .ui-state-hover,
+.ui-state-focus,
+.ui-widget-content .ui-state-focus,
+.ui-widget-header .ui-state-focus,
+.ui-button:hover,
+.ui-button:focus {border: 1px solid #cccccc;background: #ededed;font-weight: normal;color: #2b2b2b}
+.ui-state-hover a,
+.ui-state-hover a:hover,
+.ui-state-hover a:link,
+.ui-state-hover a:visited,
+.ui-state-focus a,
+.ui-state-focus a:hover,
+.ui-state-focus a:link,
+.ui-state-focus a:visited,
+a.ui-button:hover,
+a.ui-button:focus {color: #2b2b2b;text-decoration: none}
+.ui-visual-focus {box-shadow: 0 0 3px 1px rgb(94, 158, 214)}
+.ui-state-active,
+.ui-widget-content .ui-state-active,
+.ui-widget-header .ui-state-active,
+a.ui-button:active,
+.ui-button:active,
+.ui-button.ui-state-active:hover {border: 1px solid #003eff;background: #007fff;font-weight: normal;color: #ffffff}
+.ui-icon-background,
+.ui-state-active .ui-icon-background {border: #003eff;background-color: #ffffff}
+.ui-state-active a,
+.ui-state-active a:link,
+.ui-state-active a:visited {color: #ffffff;text-decoration: none}
+
+/* Misc visuals
+----------------------------------*/
+/* Corner radius */
+.ui-corner-all,
+.ui-corner-top,
+.ui-corner-left,
+.ui-corner-tl {border-top-left-radius: 3px}
+.ui-corner-all,
+.ui-corner-top,
+.ui-corner-right,
+.ui-corner-tr {border-top-right-radius: 3px}
+.ui-corner-all,
+.ui-corner-bottom,
+.ui-corner-left,
+.ui-corner-bl {border-bottom-left-radius: 3px}
+.ui-corner-all,
+.ui-corner-bottom,
+.ui-corner-right,
+.ui-corner-br {border-bottom-right-radius: 3px}
+/* Overlays */
+.ui-widget-overlay {background: #aaaaaa;opacity: .3;filter: Alpha(Opacity=30); /* support: IE8 */}
+.ui-widget-shadow {-webkit-box-shadow: 0px 0px 5px #666666;box-shadow: 0px 0px 5px #666666}

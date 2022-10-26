@@ -1,0 +1,98 @@
+/*!
+ * Elegant Responsive Content Slider 1.0.2
+ * by @realwebcare - https://www.realwebcare.com
+ */
+div.wrap .ercs-clear {clear:both}
+div#add_new_slider {width:75%}
+div#add_new_slider h2.slider-header {font-size: 24px;font-weight: 700}
+div#add_new_slider h2.slider-header a.add-new-h2 {font-style: normal;font-size: 14px;font-weight: 700}
+div#add_new_slider h2.slider-header span#ercs-loading-image {background:url(../images/ajax-loader.gif) no-repeat 0 0;margin:-3px 10px;width:96px;height:20px;display:none}
+div#add_new_slider #ercs_process_content {display:none}
+/* Process Slider Content */
+div#add_new_slider div#slidercontentdiv {background-color: #eee;border: 1px solid #ccc;border-radius: 5px;margin-top: 10px;line-height: 0;}
+div#add_new_slider .slidercontentwrap {margin:10px}
+div#add_new_slider div#slidercontentdiv table#slider_additem,
+div#add_new_slider div#slidercontentdiv table#slider_edititem {border: 1px solid #ddd;margin-bottom: 10px;}
+div#add_new_slider div#slidercontentdiv table#slider_additem tr.sliderheader th,
+div#add_new_slider div#slidercontentdiv table#slider_edititem tr.sliderheader th {background-color: #F3F3F3;padding: 15px 10px;border-bottom: 1px solid #ddd;border-left: 1px solid #ddd;font-size: 14px;font-weight: 700;line-height: 18px}
+div#add_new_slider div#slidercontentdiv table#slider_additem tr.sliderbody td,
+div#add_new_slider div#slidercontentdiv table#slider_edititem tr.sliderbody td {background-color: #fff;padding: 5px 6px;border-left: 1px solid #ddd;border-bottom: 1px solid #ddd;height: 48px}
+div#add_new_slider div#slidercontentdiv table#slider_additem tr.sliderheader th:first-child,
+div#add_new_slider div#slidercontentdiv table#slider_additem tr.sliderbody td:first-child,
+div#add_new_slider div#slidercontentdiv table#slider_edititem tr.sliderheader th:first-child,
+div#add_new_slider div#slidercontentdiv table#slider_edititem tr.sliderbody td:first-child {border-left: none}
+div#add_new_slider div#slidercontentdiv table#slider_additem tr.sliderbody td input[type="text"],
+div#add_new_slider div#slidercontentdiv table#slider_additem tr.sliderbody td select#postTP,
+div#add_new_slider div#slidercontentdiv table#slider_edititem tr.sliderbody td select#postTP {width:99.3%}
+div#add_new_slider div#slidercontentdiv table#slider_additem tr.sliderbody td select#postTP,
+div#add_new_slider div#slidercontentdiv table#slider_edititem tr.sliderbody td select#postTP {height: auto;vertical-align: initial}
+div#add_new_slider div#slidercontentdiv table#slider_additem tr.sliderbody td span#remContent,
+div#add_new_slider div#slidercontentdiv table#slider_additem tr.sliderbody td span#remDisable,
+div#add_new_slider div#slidercontentdiv table#slider_edititem tr.sliderbody td span#remContent {border: 1px solid #ddd;margin: 0 17px;padding: 3px;color: #444444;border-radius: 3px;position: relative;line-height: 0;font-size: 16px;display: inline-block}
+div#add_new_slider div#slidercontentdiv table#slider_additem tr.sliderbody td span#remDisable {background: url(../images/ercs-buttons.png) no-repeat -6px -23px;width:16px;height:16px;cursor: default}
+div#add_new_slider div#slidercontentdiv table#slider_additem tr.sliderbody td span#remContent,
+div#add_new_slider div#slidercontentdiv table#slider_edititem tr.sliderbody td span#remContent {cursor: pointer !important;background: url(../images/ercs-buttons.png) no-repeat -6px -2px;width: 16px;height: 16px}
+div#add_new_slider div#slidercontentdiv table#slider_edititem tr.sliderheader th {text-align: center;}
+div#add_new_slider div#slidercontentdiv table#slider_edititem tr.sliderbody td {cursor:move;}
+div#add_new_slider input#ercs_add_content, div#add_new_slider input#ercs_edit_content {float:right;margin:10px;}
+/* Slider Lists */
+div#add_new_slider div.slider_list {width: 97%;margin-top: 15px}
+div#add_new_slider div.slider_list p.get_started,
+div#add_new_slider p.slider_notice {background-color: #fff;padding: 10px;font-size: 14px;line-height: 24px;border-left: 4px solid #7ad03a;-webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);box-shadow: 0 1px 1px 0 rgba(0,0,0,.1)}
+div#add_new_slider p.slider_notice {width:485px;text-align: center;margin-left: 10px;padding-left:0;}
+div#add_new_slider div.slider_list table {border-collapse: collapse; margin: 0; text-align: left; width: 100%}
+div#add_new_slider div.slider_list table td,
+div#add_new_slider .slider_list table th {padding: 10px}
+div#add_new_slider div.slider_list table thead th {background-color:#fff; width: auto; color:#333; font-size: 14px}
+div#add_new_slider div.slider_list table thead th:first-child {border: none}
+div#add_new_slider div.slider_list table tbody tr {background-color: #F9F9F9}
+div#add_new_slider div.slider_list table tbody td {position:relative;color:#007193;font-size:16px;font-weight:normal;height:36px;line-height: 36px;vertical-align: 0}
+div#add_new_slider div.slider_list table tbody .alt td {background: #FFFFFF;}
+div#add_new_slider div.slider_list table tbody td:first-child {border-left: none;}
+div#add_new_slider div.slider_list table tbody tr:last-child td {border-bottom: none;}
+/* Process Slider Options */
+div#add_new_slider div#settingsliderdiv {width: 96%;margin: 27px 0 10px;line-height: 24px}
+div#add_new_slider div#settingsliderdiv div.advance-input h3 {margin:15px 0;padding:0;font-size:18px;border-bottom:1px solid #c5c5c5;width:75%}
+div#add_new_slider div#settingsliderdiv div.advance-input label.input-title,
+div#add_new_slider div#settingsliderdiv div.advance-input label.input-check {color: #555555;margin: 0;padding: 10px 0;display: inline-block;font-size: 14px;width: 320px}
+div#add_new_slider div#settingsliderdiv div.advance-input input.medium,
+div#add_new_slider div#settingsliderdiv div.advance-input input.tickbox {padding: 6px 4px;border-radius: 5px;border: 1px solid #ccc}
+div#add_new_slider div#settingsliderdiv div.advance-input input.medium {width: 20%;margin: 5px 3px 0;padding-left: 15px}
+div#add_new_slider div#settingsliderdiv div.advance-input input[type=text] {width: 30%}
+div#add_new_slider div#settingsliderdiv div.advance-input input.tickbox {margin: 2px 30% 2px 3px;border: 1px solid #aaa}
+div#add_new_slider div#settingsliderdiv div.advance-input input.tickbox:checked:before {margin: -3px 0 0 -5px}
+div#add_new_slider div#settingsliderdiv div.advance-input select.slider-dir {width: 20%;margin: 2px 3px 0;padding: 0 10px;border-radius: 5px;border: 1px solid #ccc}
+div#add_new_slider div#settingsliderdiv div.advance-input table tbody {text-align:left}
+div#add_new_slider div#settingsliderdiv div.advance-input table tr.table-header,
+div#add_new_slider div#settingsliderdiv div.advance-input table tr.table-input {background-color: #fff}
+div#add_new_slider div#settingsliderdiv div.advance-input table tr.table-header {display: block;margin: 15px 0 0}
+div#add_new_slider div#settingsliderdiv div.advance-input table tr.table-input {margin: 0;padding: 0;display: block}
+div#add_new_slider div#settingsliderdiv div.advance-input table tr.table-input th {float: left;padding: 5px 0}
+div#add_new_slider div#settingsliderdiv div.advance-input table tr.table-input th label.input-title {font-size: 12px}
+div#add_new_slider div#settingsliderdiv div.advance-input table tr.table-header td {color: #555555;font-weight: 700;padding-bottom: 10px}
+div#add_new_slider div#settingsliderdiv div.advance-input table tr td {height: auto;padding: 12px 0}
+div#add_new_slider div#settingsliderdiv div.advance-input table tr td input.medium {width: 104px;margin: 1px 0 0;padding-left: 5px}
+div#add_new_slider div#settingsliderdiv div.advance-input div#slider_content_setup {display:none}
+div#add_new_slider div#settingsliderdiv a.wp-color-result {margin: 2px 2px 0 0;height: 22px;-webkit-box-shadow: none;box-shadow: none}
+div#add_new_slider div#settingsliderdiv div.wp-picker-container input[type=text].wp-color-picker,
+div#add_new_slider div#settingsliderdiv .button.button-small {margin:2px 2px 0 0 !important;font-size:12px;width:70px}
+div#add_new_slider a.ercs_tooltip{background:url(../images/ercs-buttons.png) -10px -47px no-repeat;width:14px;height:14px;margin:0 0 0 5px;text-decoration:none;position:relative;display:inline-block;vertical-align:middle;font-weight:400;color:#364D55}
+div#add_new_slider a.ercs_tooltip:hover:after{background:#F8F8FF;border:1px solid #aaa;-moz-border-radius:5px;-webkit-border-radius:5px;-o-border-radius:5px;-khtml-border-radius:5px;border-radius:5px;top:-20px;left:35px;color:#6E6E6E;content:attr(rel);padding:10px;position:absolute;z-index:98;width:225px;font-size:12px;font-style:italic;text-align:left;line-height:16px}
+div#add_new_slider a.ercs_tooltip:hover:before{border:solid;border-color:transparent #aaa transparent transparent;border-width:10px;bottom:-4px;content:"";left:15px;position:absolute;z-index:99}
+/* Sidebar */
+div#ercs-sidebar {position: relative;margin: 53px 0 0;width:285px}
+div#ercs-sidebar .ercsusage-sidebar {margin: 0;padding: 0 15px}
+div#ercs-sidebar .ercsusage-sidebar h3 {color: #fff;border-bottom: 1px solid #72777c;padding-bottom: 7px;text-transform: uppercase}
+div#ercs-sidebar .ercsusage-list li {list-style: disc;margin: 0 0 5px 15px;}
+div#ercs-sidebar #ercsusage-shortcode.ercsusage-sidebar, div#ercs-sidebar #ercsusage-premium.ercsusage-sidebar, div#ercs-sidebar #ercsusage-features.ercsusage-sidebar, div#ercs-sidebar #ercsusage-info.ercsusage-sidebar {color:#000;position:relative;max-width:255px;padding:15px}
+div#ercs-sidebar #ercsusage-shortcode .ercsshortcode {background-color: #F8F8FF}
+div#ercs-sidebar #ercsusage-shortcode.ercsusage-sidebar input.ercs-shortcode {background: #e9e9e9;display: inline-block;margin: 0;padding: 0 10px;height: 32px;line-height: 32px;letter-spacing: 1px;font-weight: 600;border-radius: 3px;border: 1px solid #cccccc}
+div#ercs-sidebar #ercsusage-premium.ercsusage-sidebar {display:none;background-color:#4682B4;height: 173px;padding-top: 0}
+div#ercs-sidebar #ercsusage-premium.ercsusage-sidebar .ercs {font-size: 18px;margin: 10px 0;line-height: 28px;font-weight: 600;color: #f1f1f1;text-shadow: 1px 1px 1px #192067}
+div#ercs-sidebar #ercsusage-premium.ercsusage-sidebar a {float: right;background: #333A80;display: inline-block;margin: 10px 0;padding: 6px 8px;text-decoration: none;color: #f1f1f1;font-size: 14px;font-weight: 600;border-radius: 5px;box-shadow: 0px 0px 1px #222;border: 1px solid #192067}
+div#ercs-sidebar #ercsusage-premium.ercsusage-sidebar a:hover {border: 1px solid #71759e}
+div#ercs-sidebar #ercsusage-info.ercsusage-sidebar h3, div#ercs-sidebar #ercsusage-features.ercsusage-sidebar h3, div#ercs-sidebar #ercsusage-shortcode.ercsusage-sidebar h3 {background-color: #007fff;font-size: 18px;margin: 0;padding: 3px 15px;line-height: 28px;font-weight: 600;color: #fff;text-shadow: 1px 1px 1px #23282d;border-top-left-radius: 5px;border-top-right-radius: 5px}
+div#ercs-sidebar #ercsusage-info.ercsusage-sidebar ul.ercsusage-list,
+div#ercs-sidebar #ercsusage-shortcode .ercsshortcode {margin:0;padding:15px;border:1px solid #c5c5c5;border-top:none;background-color: #fff}
+div#ercs-sidebar #ercsusage-info.ercsusage-sidebar a {color: #0073aa;text-decoration: none;font-weight: 600}
+div#ercs-sidebar #ercsusage-info.ercsusage-sidebar a:hover {text-decoration: underline}
