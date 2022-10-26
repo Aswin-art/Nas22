@@ -1,0 +1,90 @@
+html, body{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container{
+    /* background-color: green; */
+    width: 960px;
+    height: 600px;
+    display: flex;
+    gap: 10px;
+}
+
+/* .grid1{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: ;
+    background-color: black;
+}
+
+.box1{
+    
+}
+
+.grid2{
+    display: grid;
+    background-color: pink;
+} */
+
+.grid1{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 10px;
+}
+
+.box1{
+    flex: 2;
+}
+
+.box2{
+    flex: 1;
+}
+
+.box3{
+    flex: 1.5;
+}
+.box4{
+    flex: 1;
+}
+
+.box5{
+    flex: 2;
+}
+
+.box6{
+    flex: 1.5;
+}
+.box7{
+    flex: 1.5;
+}
+
+.box8{
+    flex: 1;
+}
+
+.box9{
+    flex: 2;
+}
+
+.box{
+    background-color: lightgray;
+}
+
+.grid2{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 10px;
+}
+
+.grid3{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 10px;
+}
