@@ -29,7 +29,7 @@ span.color{
 }
 
 .game-wrapper{
-    display: block;
+    display: none;
 }
 
 .gameScreen{
@@ -38,7 +38,7 @@ span.color{
 
 .menuScreen{
     background-color: rgba(0, 0, 0, 1);
-    display: none;
+    display: block;
     align-items: center;
     justify-content: center;
     flex-direction: column;

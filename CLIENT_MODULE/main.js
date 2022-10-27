@@ -123,24 +123,27 @@ class Board{
 class EventHandler{
     constructor(game){
         document.addEventListener('mousemove', (e) => {
-            mouse.position.x = e.x - canvasPosition.x
-            mouse.position.y = e.y - canvasPosition.y
+            if(pause) return
+            console.log(canvasPosition.left, canvasPosition.x)
+            mouse.position.x = e.clientX - canvas.getBoundingClientRect().left
+            mouse.position.y = e.clientY - canvas.getBoundingClientRect().top
+            console.log(mouse.position.x)
         })
 
         document.addEventListener('mouseleave', (e) => {
+            if(pause) return
             mouse.position.x = undefined
             mouse.position.y = undefined
         })
 
         document.addEventListener('click', (e) => {
-            // const position = {
-            //     x: mouse.position.x - (mouse.position.x % 35),
-            //     y: mouse.position.y - (mouse.position.y % 35)
-            // }
-
+            if(pause) return
             if(hexes.disabled){
                 return
             }else{
+                hexes.disabled = true
+                const audio = new Audio('./sound.mp3')
+                audio.play()
                 hexes.number = currentTiles.number
                 if(turn == 1){
                     currentTiles = {
@@ -160,22 +163,14 @@ class EventHandler{
                     hexes.backgroundColor = currentTiles.color
                     player2.totalTiles += hexes.number
                     turn = 1
-                }
-                hexes.disabled = true
+                }            
             }
-
-            // game.hexagons.forEach(e => {
-            //     if(collision(e, mouse)){
-            //         game.tiles.push(drawTile(position))
-            //     }
-            // })
-            
         })
     }
 }
 
 class Tile{
-    constructor(hexa, mouse, position){
+    constructor(position){
         this.position = position
         this.a = 2 * Math.PI / 6
         this.radius = 35
@@ -263,112 +258,103 @@ class Game{
 
 const game = new Game()
 
-let pause = false
+let pause = true
 
 function animate(){
-    ctx.clearRect(0, 0, canvas.width, canvas.height)
-    game.draw()
-    game.update()
-    // player1ColorEl.style.backgroundColor = 'red'
-    // player2ColorEl.style.backgroundColor = 'blue'
-    // player1ColorEl.style.width = '5px'
-    // player2ColorEl.style.width = '5px'
-    // player1ColorEl.style.height = '5px'
-    // player2ColorEl.style.height = '5px'
-
-    // player1ScoreEl.innerHTML = player1.totalTiles
-    // player2ScoreEl.innerHTML = player2.totalTiles
-
-    // player1NameEl.innerHTML = localStorage.getItem('player1')
-    // player2NameEl.innerHTML = localStorage.getItem('player2')
-    ctx.fillStyle = 'red'
-    ctx.fillRect(canvas.width / 2 - 50, canvas.height - 40, 10, 10)
-    ctx.fillStyle = 'white'
-    ctx.fillText(localStorage.getItem('player1'), canvas.width / 2 - 50 + 20, canvas.height - 32)
-    ctx.fillStyle = 'blue'
-    ctx.fillRect(canvas.width / 2, canvas.height - 40, 10, 10)
-    ctx.fillStyle = 'white'
-    ctx.fillText(localStorage.getItem('player2'), canvas.width / 2 + 20, canvas.height - 32)
-
-    ctx.fillText(player1.totalTiles, canvas.width / 2 - 50, canvas.height - 2.5)
-    ctx.fillText(player2.totalTiles, canvas.width / 2, canvas.height - 2.5)
-    if(!pause){
+    if(pause){
+        return
+    }else{
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
+        game.update()
+        game.draw()
+        
+        ctx.fillStyle = 'red'
+        ctx.fillRect(canvas.width / 2 - 50, canvas.height - 40, 10, 10)
+        ctx.fillStyle = 'white'
+        ctx.fillText(localStorage.getItem('player1'), canvas.width / 2 - 50 + 20, canvas.height - 32)
+        ctx.fillStyle = 'blue'
+        ctx.fillRect(canvas.width / 2, canvas.height - 40, 10, 10)
+        ctx.fillStyle = 'white'
+        ctx.fillText(localStorage.getItem('player2'), canvas.width / 2 + 20, canvas.height - 32)
+    
+        ctx.fillText(player1.totalTiles, canvas.width / 2 - 50, canvas.height - 2.5)
+        ctx.fillText(player2.totalTiles, canvas.width / 2, canvas.height - 2.5)
         requestAnimationFrame(animate)
     }
 }
 
-animate()
 
-// function play(){
-//     localStorage.setItem('player1', inputNamePlayer.value)
-//     localStorage.setItem('player2', player2Name.value)
-//     let enemyType = localStorage.getItem('enemyType')
-//     if(enemyType == 'bot'){
-//         if(localStorage.getItem('level') && (localStorage.getItem('player1') && localStorage.getItem('player1') != undefined) && inputNamePlayer.value){
-//             menuScreen.style.display = 'none'
-//             gameWrapper.style.display = 'block'
-//             pause = false
-//             animate()
-//         }
-//     }else{
-//         if(localStorage.getItem('level') && (localStorage.getItem('player1') && localStorage.getItem('player1') != undefined) && (inputNamePlayer.value && player2Name.value)){
-//             menuScreen.style.display = 'none'
-//             gameWrapper.style.display = 'block'
-//             pause = false
-//             animate()
-//         }
-//     }
-// }
+function play(){
+    localStorage.setItem('player1', inputNamePlayer.value)
+    localStorage.setItem('player2', player2Name.value)
+    let enemyType = localStorage.getItem('enemyType')
+    if(enemyType == 'bot'){
+        if(localStorage.getItem('level') && (localStorage.getItem('player1'))){
+            menuScreen.style.display = 'none'
+            gameWrapper.style.display = 'block'
+            pause = false
+            animate()
+        }
+    }else{
+        if(localStorage.getItem('level') && (localStorage.getItem('player1') && localStorage.getItem('player2'))){
+            menuScreen.style.display = 'none'
+            gameWrapper.style.display = 'block'
+            pause = false
+            animate()
+        }
+    }
+}
 
-// inputLevel.addEventListener('input', () => {
-//     if(inputLevel.value){
-//         btnLevel.style.pointerEvents = 'visible'
-//         btnLevel.style.cursor = 'pointer'
-//         btnLevel.style.backgroundColor = 'salmon'
-//         btnLevel.addEventListener('click', () => {
-//             localStorage.setItem('level', inputLevel.value)
-//             firstMenu.style.display = 'none'
-//             secondMenu.style.display = 'block'
-//             localStorage.setItem('enemyType', 'player')
-//         })
-//     }else{
-//         btnLevel.style.pointerEvents = 'none'
-//         btnLevel.style.cursor = 'default'
-//         btnLevel.style.backgroundColor = 'rgba(215, 102, 90, .5)'
-//     }
-// })
+inputLevel.addEventListener('input', () => {
+    if(inputLevel.value){
+        btnLevel.style.pointerEvents = 'visible'
+        btnLevel.style.cursor = 'pointer'
+        btnLevel.style.backgroundColor = 'salmon'
+        btnLevel.addEventListener('click', () => {
+            localStorage.setItem('level', inputLevel.value)
+            firstMenu.style.display = 'none'
+            secondMenu.style.display = 'block'
+            localStorage.setItem('enemyType', 'player')
+        })
+    }else{
+        btnLevel.style.pointerEvents = 'none'
+        btnLevel.style.cursor = 'default'
+        btnLevel.style.backgroundColor = 'rgba(215, 102, 90, .5)'
+    }
+})
 
-// pickEnemy.addEventListener('input', () => {
-//     localStorage.setItem('enemyType', pickEnemy.value)
-//     if(pickEnemy.value == 'player'){
-//         inputPlayer2.style.display = 'block'
-//     }else{
-//         inputPlayer2.style.display = 'none'
-//     }
-// })
+pickEnemy.addEventListener('input', () => {
+    localStorage.setItem('enemyType', pickEnemy.value)
+    if(pickEnemy.value == 'player'){
+        inputPlayer2.style.display = 'block'
+    }else{
+        inputPlayer2.style.display = 'none'
+    }
+})
 
-// player2Name.addEventListener('input', () => {
-//     if(player2Name.value && localStorage.getItem('enemyType') == 'player'){
-//         btnPlay.style.pointerEvents = 'visible'
-//         btnPlay.style.cursor = 'pointer'
-//         btnPlay.style.backgroundColor = 'salmon'
-//     }else{
-//         btnPlay.style.pointerEvents = 'none'
-//         btnPlay.style.cursor = 'default'
-//         btnPlay.style.backgroundColor = 'rgba(215, 102, 90, .5)'
-//     }
-// })
+player2Name.addEventListener('input', () => {
+    if(player2Name.value && localStorage.getItem('enemyType') == 'player'){
+        btnPlay.style.pointerEvents = 'visible'
+        btnPlay.style.cursor = 'pointer'
+        btnPlay.style.backgroundColor = 'salmon'
+        btnPlay.addEventListener('click', play)
+    }else{
+        btnPlay.style.pointerEvents = 'none'
+        btnPlay.style.cursor = 'default'
+        btnPlay.style.backgroundColor = 'rgba(215, 102, 90, .5)'
+    }
+})
 
-// inputNamePlayer.addEventListener('input', () => {
-//     if(inputNamePlayer.value && localStorage.getItem('enemyType') == 'bot'){
-//         btnPlay.style.pointerEvents = 'visible'
-//         btnPlay.style.cursor = 'pointer'
-//         btnPlay.style.backgroundColor = 'salmon'
-//         btnPlay.addEventListener('click', play)
+inputNamePlayer.addEventListener('input', () => {
+    if(inputNamePlayer.value && localStorage.getItem('enemyType') == 'bot'){
+        btnPlay.style.pointerEvents = 'visible'
+        btnPlay.style.cursor = 'pointer'
+        btnPlay.style.backgroundColor = 'salmon'
+        btnPlay.addEventListener('click', play)
 
-//     }else{
-//         btnPlay.style.pointerEvents = 'none'
-//         btnPlay.style.cursor = 'default'
-//         btnPlay.style.backgroundColor = 'rgba(215, 102, 90, .5)'
-//     }
-// })
+    }else{
+        btnPlay.style.pointerEvents = 'none'
+        btnPlay.style.cursor = 'default'
+        btnPlay.style.backgroundColor = 'rgba(215, 102, 90, .5)'
+    }
+})
