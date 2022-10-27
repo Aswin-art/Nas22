@@ -276,6 +276,8 @@ function animate(){
         ctx.fillRect(canvas.width / 2, canvas.height - 40, 10, 10)
         ctx.fillStyle = 'white'
         ctx.fillText(localStorage.getItem('player2'), canvas.width / 2 + 20, canvas.height - 32)
+        localStorage.setItem('score1', player1.totalTiles)
+        localStorage.setItem('score2', player2.totalTiles)
     
         ctx.fillText(player1.totalTiles, canvas.width / 2 - 50, canvas.height - 2.5)
         ctx.fillText(player2.totalTiles, canvas.width / 2, canvas.height - 2.5)
