@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hexaria</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="./images/logo.png" type="image/x-icon">
+</head>
+<body>
+    <div class="container">
+        <div class="menuScreen">
+            <div class="menu">
+                <div class="first">
+                    <h1>Welcome Screen</h1>
+                    <ul>
+                        <li>Click the empty tiles</li>
+                    </ul>
+                    <div class="level">
+                        <h5>Pick your level:</h5>
+                        <select name="level" id="level" class="inputLevel">
+                            <option value="easy">Easy</option>
+                            <option value="medium">Medium</option>
+                            <option value="hard">Hard</option>
+                        </select>
+                        <button class="btn-main btnLevel">Confirm</button>
+                    </div>
+                </div>
+                
+                <div class="second">
+                    <div class="selectEnemies">
+                        <h5>Pick your enemy:</h5>
+                        <select name="enemy" id="enemy" class="inputEnemy">
+                            <option value="player">Player 2</option>
+                            <option value="bot">Bot</option>
+                        </select>
+    
+                        <div class="inputname">
+                            <label for="name">Type your name</label>
+                            <input type="text" class="inputNamePlayer">
+                        </div>
+    
+                        <div class="player2">
+                            <label for="name">Type your enemy name</label>
+                            <input type="text" class="inputNameEnemy">
+                        </div>
+                        <button class="btn-main btn-play">Confirm</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="gameover">
+
+        </div>
+        <canvas id="game"></canvas>
+    </div>
+
+    <script src="./main.js"></script>
+</body>
+</html>
