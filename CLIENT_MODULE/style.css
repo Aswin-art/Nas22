@@ -9,6 +9,7 @@ html, body{
     height: 100vh;
     font-family: Arial, Helvetica, sans-serif;
     background-color: black;
+    color: white;
 }
 
 .container{
@@ -19,6 +20,12 @@ html, body{
     justify-content: center;
     position: relative;
     flex-direction: column;
+}
+
+span.color{
+    width: 1px;
+    height: 1px;
+    background-color: white;
 }
 
 .game-wrapper{
@@ -75,6 +82,10 @@ li{
     border: none;
     padding: .4rem .7rem;
     border-radius: 10px;
+    color: white;
+}
+
+.info-game{
     color: white;
 }
 /* 

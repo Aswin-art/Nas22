@@ -14,20 +14,35 @@ const pickEnemy = document.querySelector('.inputEnemy')
 const inputNamePlayer = document.querySelector('.inputNamePlayer')
 const inputPlayer2 = document.querySelector('.player2')
 const player2Name = document.querySelector('.inputNameEnemy')
+// const player1El = document.querySelector('.player1-info')
+// const player2El = document.querySelector('.player2-info')
+// const player1ColorEl = player1El.querySelector('.color')
+// const player2ColorEl = player2El.querySelector('.color')
+// const player1ScoreEl = player1El.querySelector('.score')
+// const player2ScoreEl = player2El.querySelector('.score')
+// const player1NameEl = player1El.querySelector('.name')
+// const player2NameEl = player2El.querySelector('.name')
 
-canvas.width = 900
-canvas.height = 700
+canvas.width = 640
+canvas.height = 555
 
 let turn = 1
 let player1 = {
-    totalTiles: [],
+    totalTiles: 0,
     color: 'red'
 }
 let player2 = {
-    totalTiles: [],
-    color: 'green'
+    totalTiles: 0,
+    color: 'blue'
 }
+
+
 let canvasPosition = canvas.getBoundingClientRect()
+let hexes = null
+let currentTiles = {
+    color: 'red',
+    number: Math.round(Math.random() * 19 + 1)
+}
 const mouse = {
     position: {
         x: 0,
@@ -37,20 +52,16 @@ const mouse = {
     height: 0.1
 }
 
-function collision(first, second){
-    if(
-        !(
-            first.x > second.position.x + second.width ||
-            first.x + first.radius < second.position.x ||
-            first.y > second.position.y + second.height ||
-            first.y + first.radius < second.position.y
-        )
-    ){
-        return true
-    }
+function collision(hexa, mouse){
+    return (
+        mouse.position.x > hexa.x - hexa.radius &&
+        mouse.position.x < hexa.x + hexa.radius &&
+        mouse.position.y > hexa.y - hexa.radius &&
+        mouse.position.y < hexa.y + hexa.radius
+    )
 }
 
-function drawBoard(width, height){
+function drawBoard(){
     let boards = []
 
     const a = 2 * Math.PI / 6
@@ -58,50 +69,59 @@ function drawBoard(width, height){
 
     for(let y = 0; y < 8; ++y){
         for(let x = 0; x < 10; ++x){
+
             if(y & 1){
-                boards.push(new Board(x * 60 + r + 30, y * 70 + r, a, r))
+                boards.push(new Board(x * 60 + r + 30, y * 55 + r, a, r))
             }else{
-                boards.push(new Board(x * 60 + r, y * 70 + r, a, r))
+                boards.push(new Board(x * 60 + r, y * 55 + r, a, r))
             }
         }
     }
-
     return boards
 }
 
+function drawTile(position){
+    return new Tile(position)
+}
+
 class Board{
-    constructor(x, y, a, radius){
+    constructor(x, y, a, r){
         this.x = x
         this.y = y
         this.a = a
-        this.radius = radius
+        this.radius = r
+        this.color = 'gray'
+        this.backgroundColor = 'transparent'
+        this.number = ''
+        this.disabled = false
     }
 
     draw(){
         ctx.beginPath()
         if(collision(this, mouse)){
-            ctx.strokeStyle = 'red'
-        }else{
-            ctx.strokeStyle = 'gray'
+            hexes = this
         }
-
-        ctx.strokeStyle = 'gray'
-        ctx.fillStyle = 'white'
-        ctx.fillText(6, this.x, this.y)
+        
+        ctx.strokeStyle = this.color
+        
+        ctx.fillStyle = this.backgroundColor
         for(let i = 0; i < 6; ++i){
             ctx.lineTo(this.x + this.radius * Math.sin(this.a * i), this.y + this.radius * Math.cos(this.a * i))
         }
+        ctx.fill()
         ctx.closePath()
         ctx.stroke()
+        ctx.fillStyle = 'white'
+        ctx.fillText(this.number, this.x - 5, this.y)
     }
 
     update(){
-
+        
     }
 }
 
 class EventHandler{
-    constructor(){
+    constructor(game){
         document.addEventListener('mousemove', (e) => {
             mouse.position.x = e.x - canvasPosition.x
             mouse.position.y = e.y - canvasPosition.y
@@ -113,22 +133,98 @@ class EventHandler{
         })
 
         document.addEventListener('click', (e) => {
-            const position = {
-                x: mouse.position.x - (mouse.position.x % cellSize),
-                y: mouse.position.y - (mouse.position.y % cellSize)
-            }
+            // const position = {
+            //     x: mouse.position.x - (mouse.position.x % 35),
+            //     y: mouse.position.y - (mouse.position.y % 35)
+            // }
 
-            for(let i = 0; i < game.defenders.length; ++i){
-                if(game.defenders[i].position.x == position.x && game.defenders[i].position.y == position.y){
-                    return
+            if(hexes.disabled){
+                return
+            }else{
+                hexes.number = currentTiles.number
+                if(turn == 1){
+                    currentTiles = {
+                        color: 'red',
+                        number: Math.round(Math.random() * 19 + 1)
+                    }
+                    hexes.color = currentTiles.color
+                    hexes.backgroundColor = currentTiles.color
+                    player1.totalTiles += hexes.number
+                    turn = 2
+                }else{
+                    currentTiles = {
+                        color: 'blue',
+                        number: Math.round(Math.random() * 19 + 1)
+                    }
+                    hexes.color = currentTiles.color
+                    hexes.backgroundColor = currentTiles.color
+                    player2.totalTiles += hexes.number
+                    turn = 1
                 }
+                hexes.disabled = true
             }
 
-            if(game.resources >= defenderCost){
-                game.defenders.push(drawDefender(position))
-                game.resources -= defenderCost
-            }
+            // game.hexagons.forEach(e => {
+            //     if(collision(e, mouse)){
+            //         game.tiles.push(drawTile(position))
+            //     }
+            // })
+            
         })
+    }
+}
+
+class Tile{
+    constructor(hexa, mouse, position){
+        this.position = position
+        this.a = 2 * Math.PI / 6
+        this.radius = 35
+        // this.hexa = hexa
+        // this.mouse = mouse
+    }
+
+    draw(){
+        // if(collision(this.hexa, this.mouse)){
+
+        // }
+        console.log('oke')
+        ctx.beginPath()
+        for(let i = 0; i < 6; ++i){
+            ctx.lineTo(this.position.x + this.radius * Math.sin(this.a * i), this.position.y + this.radius * Math.cos(this.a * i))
+        }
+        ctx.closePath()
+    }
+
+    update(){
+
+    }
+}
+
+class Current{
+    constructor(x, y, r, a){
+        this.color = 'white'
+        this.backgroundColor = currentTiles.color
+        this.number = currentTiles.number
+        this.a = a
+        this.x = x
+        this.y = y
+        this.radius = r
+    }
+
+    draw(){
+        ctx.strokeStyle = this.color
+        
+        ctx.fillStyle = this.backgroundColor
+        ctx.beginPath()
+        for(let i = 0; i < 6; ++i){
+            ctx.lineTo(this.x + this.radius * Math.sin(this.a * i), this.y + this.radius * Math.cos(this.a * i))
+        }
+        ctx.fill()
+        ctx.closePath()
+        ctx.stroke()
+        ctx.fillStyle = 'white'
+        ctx.fillText('Current: ', canvas.width / 2 - 60, canvas.height - 65)
+        ctx.fillText(this.number, this.x - 5, this.y)
     }
 }
 
@@ -138,15 +234,30 @@ class Game{
     }
 
     setup(){
-        this.hexagon = drawBoard(canvas.width, canvas.height)
+        this.hexagons = drawBoard(canvas.width, canvas.height)
+        this.tiles = []
+        this.current = new Current(canvas.width / 2, canvas.height - 70, 15, 2 * Math.PI / 6)
+        new EventHandler()
     }
 
     draw(){
-        [...this.hexagon].forEach(e => e.draw())
+        [...this.hexagons, ...this.tiles, this.current].forEach(e => e.draw())
     }
     
     update(){
-        [...this.hexagon].forEach(e => e.draw())
+        [...this.hexagons, ...this.tiles].forEach(e => e.draw())
+
+        // if(turn == 1){
+        //     currentTiles = {
+        //         color: 'red',
+        //         number: Math.round(Math.random() * 19 + 1)
+        //     }
+        // }else{
+        //     currentTiles = {
+        //         color: 'blue',
+        //         number: Math.round(Math.random() * 19 + 1)
+        //     }
+        // }
     }
 }
 
@@ -158,7 +269,29 @@ function animate(){
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     game.draw()
     game.update()
+    // player1ColorEl.style.backgroundColor = 'red'
+    // player2ColorEl.style.backgroundColor = 'blue'
+    // player1ColorEl.style.width = '5px'
+    // player2ColorEl.style.width = '5px'
+    // player1ColorEl.style.height = '5px'
+    // player2ColorEl.style.height = '5px'
 
+    // player1ScoreEl.innerHTML = player1.totalTiles
+    // player2ScoreEl.innerHTML = player2.totalTiles
+
+    // player1NameEl.innerHTML = localStorage.getItem('player1')
+    // player2NameEl.innerHTML = localStorage.getItem('player2')
+    ctx.fillStyle = 'red'
+    ctx.fillRect(canvas.width / 2 - 50, canvas.height - 40, 10, 10)
+    ctx.fillStyle = 'white'
+    ctx.fillText(localStorage.getItem('player1'), canvas.width / 2 - 50 + 20, canvas.height - 32)
+    ctx.fillStyle = 'blue'
+    ctx.fillRect(canvas.width / 2, canvas.height - 40, 10, 10)
+    ctx.fillStyle = 'white'
+    ctx.fillText(localStorage.getItem('player2'), canvas.width / 2 + 20, canvas.height - 32)
+
+    ctx.fillText(player1.totalTiles, canvas.width / 2 - 50, canvas.height - 2.5)
+    ctx.fillText(player2.totalTiles, canvas.width / 2, canvas.height - 2.5)
     if(!pause){
         requestAnimationFrame(animate)
     }
@@ -168,6 +301,7 @@ animate()
 
 // function play(){
 //     localStorage.setItem('player1', inputNamePlayer.value)
+//     localStorage.setItem('player2', player2Name.value)
 //     let enemyType = localStorage.getItem('enemyType')
 //     if(enemyType == 'bot'){
 //         if(localStorage.getItem('level') && (localStorage.getItem('player1') && localStorage.getItem('player1') != undefined) && inputNamePlayer.value){
